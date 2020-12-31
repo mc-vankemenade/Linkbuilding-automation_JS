@@ -1,6 +1,4 @@
 var linkList = document.getElementById("backlinkList");
-
-var xmlhttp = new XMLHttpRequest();
 var linkArray = []
 
 function updateList() {
@@ -23,6 +21,8 @@ function updateList() {
             updateList(); 
         });
     })
+
+
 }
 
 
@@ -35,31 +35,4 @@ function addLink() {
 
 
     updateList();
-}
-
-function start(){
-    var targetURL = document.getElementById("targetUrl").value;
-    var targetName = document.getElementById("targetName").value;
-    var targetEmail = document.getElementById("targetEmail").value;
-    var accessToken = document.getElementById("accessToken").value;
-    var privateKey = document.getElementById("privateKey").value;
-    var devEnviroment = document.getElementById("devEnviroment").checked;
-
-    message = {
-        "targetURL":targetURL,
-        "targetName":targetName,
-        "targetEmail":targetEmail,
-        "accessToken":accessToken,
-        "privateKey":privateKey,
-        "devEnviroment":devEnviroment,
-        "linksToRequest": linkArray
-    }
-
-    jsonMessage = JSON.stringify(message)
-    console.log(jsonMessage)
-
-    xmlhttp.open("POST", "http://127.0.0.1:8080/startBuilding", true);
-    xmlhttp.setRequestHeader('Content-Type', 'application/json');
-    xmlhttp.send(jsonMessage);
-    
 }

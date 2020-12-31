@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
-<link rel="stylesheet" href="/style.css">
-<link rel="icon" href="favicon.png">
+  <title>Page Title</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="favicon.png">
 </head>
+
 <body>
-    <div class="title">
-        <img src=https://marketingmadheads.com/app/themes/lyfter-child/img/base/brand-logo.png alt="logo" id="logo">
-        <h1 id=desc>Automated<br>Linkbuilding</h1>
-      </div>
-  
-      <form class="content" id="siteData">
-        <label for="targetUrl">Target site URL:</label><br>
-        <input type="text" class="formElement" id="targetUrl">
-        <br>
-        <label for="targetName">Target site name:</label><br>
-        <input type="text" class="formElement" id="targetName">
-        <br>
-        <label for="targetEmail">Target user E-mail:</label><br>
-        <input type="text" class="formElement" id="targetEmail">
-        <br>
-        <div>
-          <br><strong>Backlinks to request:</strong>
-          <div id="backlinkList"></div>
-          <button type= "button" class="backlinkButton" id="addBacklink" onclick=addLink()>Add Backlink</button>
-        </div>
-      </form>
-  
-      <form class="content" id="apiData">
-        <label for="accessToken">Majestic OpenApp access token:</label><br>
-        <input type="password" class="formElement" id="accessToken" value="">
-        <br>
-        <label for="privateKey">Majestic openApp private key:</label><br>
-        <input type="password" class="formElement" id="privateKey" value="">
-        <br>
-        <input type="checkbox" class="formElement" id="devEnviroment"><label for="devEnviroment">Use Majestic Developer URL?</label>
-      </form>
-  
-      <button type= "button" id="startLinkBuilding" onclick="start()">Start Linkbuilding!</button>
-<script src="/script.js"></script>
+  <div class="title">
+    <img src=https://marketingmadheads.com/app/themes/lyfter-child/img/base/brand-logo.png alt="logo" id="logo">
+    <h1 id=desc>Automated<br>Linkbuilding</h1>
+  </div>
+
+  <form class="content" id="siteData">
+    <label for="targetUrl">Target site URL:</label><br>
+    <input type="text" class="formElement" id="targetUrl">
+    <br>
+    <label for="targetName">Target site name:</label><br>
+    <input type="text" class="formElement" id="targetName">
+    <br>
+    <label for="targetEmail">Target user E-mail:</label><br>
+    <input type="text" class="formElement" id="targetEmail">
+    <br>
+    <input type="checkbox" class="formElement" id="devEnviroment"><label for="devEnviroment">Use Majestic Developer URL?</label>
+    <br>
+    
+    <div>
+      <br><strong>Backlinks to request:</strong>
+      <div id="backlinkList"></div>
+      <button type= "button" class="backlinkButton" id="addBacklink" onclick=addLink()>Add Backlink</button>
+    </div>
+  </form>
+
+  <button type="button" id="startLinkBuilding" onclick="start()">Start Linkbuilding!</button>
+
+  <div class="content" id="linkReport">
+    <strong>Linkbuilding Results</strong>
+    <br>
+    <div id=succeededLinks></div>
+    <div id="failedLinks"></div>
+  </div>
+  <script src="/scripts/linkList.js"></script>
+  <script src="/scripts/requestHandler.js"></script>
 </body>
 </html>

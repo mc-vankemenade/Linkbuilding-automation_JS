@@ -7,6 +7,8 @@ var domainType2 = domainTypes["domainType2"]
 var domainType3 = domainTypes["domainType3"]
 
 const dataParser = function (data) {
+    
+
 
     //parses the data from the webserver into two variables
     let links = data["linksToRequest"];
@@ -17,7 +19,6 @@ const dataParser = function (data) {
     var linkType2 = [];
     var linkType3 = [];
 
-    
     //tests each link against all the domains of the different types and adds them to their respective arrays
     links.forEach(link => {
         
@@ -40,11 +41,11 @@ const dataParser = function (data) {
         });
     });
 
-
     console.log(links);
     console.log(linkType1);
     console.log(linkType2);
     console.log(linkType3);
+
 }
 
 //exports functions so that they can be called from other files.

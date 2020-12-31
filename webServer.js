@@ -14,8 +14,19 @@ server.use(express.static("web"));//tells webserver to serve directory called 'w
 
 //tells webserver how to respond to post requests at the /startBuilding link
 server.post("/startBuilding", (req, res) =>{
-    res.sendStatus(200);
+    try{
+        if(req.body["linksToRequest"] == ""){
+            throw 400;
+        }
+    }catch(error){
+        console.log("invalid links submitted!");
+        res.sendStatus(400);
+        return;
+    }
+
+    res.status(200).send("processing") ;
     dataHandler.dataParser(req.body);
+    
 });
 
 var port = 8080 //defines port to host webserver on

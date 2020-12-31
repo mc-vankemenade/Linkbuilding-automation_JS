@@ -45,13 +45,9 @@ body {
     border-radius: 5px;
 }
 
-#siteData{
-    grid-row: 3/7;
-    grid-column: 2/4;
-}
 
-#apiData{
-    grid-row: 3/5;
+#linkReport{
+    grid-row: 5/7;
     grid-column: 4/6;
 }
 
@@ -64,7 +60,7 @@ body {
     border-radius: 5px;
 
     padding: 15px;
-    height: 200px;
+    height: 175px;
 
     overflow: auto;
 }
@@ -104,13 +100,9 @@ body {
     margin-right: 5px;
 }
 
-#removeBacklink{
-    margin-left: 5px;
-}
-
 #startLinkBuilding{
     grid-column: 4/6;
-    grid-row: 5/6;
+    grid-row: 3/4;
 
     width: 250px;
     height: 100px;
@@ -125,4 +117,37 @@ body {
     font-family: Poppins, sans-serif;
     font-size: 30px;
     font-weight: bold;
+}
+
+#siteData{
+    grid-row: 3/7;
+    grid-column: 2/4;
+}
+
+#succeededLinks{
+    grid-column: 4/5;
+    grid-row: 5/7;
+    padding: 10px;
+    margin-top: 5px;
+    float: left;
+
+    height: 80%;
+    width: 43%;
+    border-radius: 10px;
+    background-color: mediumspringgreen;
+    overflow: auto;
+}
+
+#failedLinks{
+    grid-column: 5/6;
+    grid-row: 5/7;
+    padding: 10px;
+    margin-top: 5px;
+    float: right;
+
+    height: 80%;
+    width: 43%;
+    border-radius: 10px;
+    background-color: salmon;
+    overflow: auto;
 }
