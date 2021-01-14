@@ -1,22 +1,40 @@
-var xmlhttp = new XMLHttpRequest();
+const failedList = document.getElementById("failedLinks");
+const succeededList = document.getElementById("succeededLinks");
 
-xmlhttp.onreadystatechange = function() {
-    if(this.readyState == 4 && this.status == 200){
-        switch(this.responseType){
-            case "":
-                document.getElementById("startLinkBuilding").innerHTML = this.responseText;
-                break;
-            
-            case "json":
-                document.getElementById("startLinkBuilding").innerHTML = "Start Linkbuilding!";
-                showReport();
+const url = "ws://127.0.0.1:8080"
+const connection = new WebSocket(url)
+
+connection.onopen = () => {
+    let msg = {"header": "connected", "data":"Hello world!"};
+    msg = JSON.stringify(msg);
+    connection.send(msg);
+}
+
+connection.onmessage = (message) => {
+    try{
+        msg = JSON.parse(message.data);
+
+        switch(msg.header){
+
+            case "report":
+                failedList.innerHTML = "";
+                for (let i=0; i < msg.data.failed.length; i++) {
+                    failedList.innerHTML += "<a target='_blank' href=" + msg.data.failed[i] + ">" + msg.data.failed[i] + "</a>";
+                    failedList.innerHTML += "<br>";
+                }
+
+                succeededList.innerHTML = "";
+                for (let i=0; i < msg.data.success.length; i++) {
+                    succeededList.innerHTML += "<a target='_blank' href=" + msg.data.success[i] + ">" + msg.data.success[i] + "</a>";
+                    succeededList.innerHTML += "<br>";
+                }
                 break;
         }
+
+    }catch(error){
+        console.log(error);
     }
-    if(this.readyState == 4 && this.status == 400){
-        alert("Incorrect data entered.")
-    }
-};
+}
 
 function start(){
 
@@ -26,22 +44,17 @@ function start(){
     var targetEmail = document.getElementById("targetEmail").value;
     var devEnviroment = document.getElementById("devEnviroment").checked;
 
-    message = {
-        "targetURL":targetURL,
-        "targetName":targetName,
-        "targetEmail":targetEmail,
-        "devEnviroment":devEnviroment,
-        "linksToRequest":linkArray
+    message = { "header": "start", "data": {
+            "targetURL":targetURL,
+            "targetName":targetName,
+            "targetEmail":targetEmail,
+            "devEnviroment":devEnviroment,
+            "linksToRequest":linkArray
+        }
     }
 
     jsonMessage = JSON.stringify(message)
-    console.log(jsonMessage)
+    //console.log(jsonMessage)
 
-    xmlhttp.open("POST", "http://127.0.0.1:8080/startBuilding", true);
-    xmlhttp.setRequestHeader('Content-Type', 'application/json');
-    xmlhttp.send(jsonMessage);   
-}
-
-function showReport() {
-    console.log("hello world");
+    connection.send(jsonMessage);   
 }

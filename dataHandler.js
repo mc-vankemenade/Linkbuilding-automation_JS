@@ -8,7 +8,9 @@ var domainType3 = domainTypes["domainType3"]
 
 const dataParser = function (data) {
     
+    var linkReport = {"success": ["hello", "world", "lorem"], "failed": ["hello", "world", "lorem"]};
 
+    return linkReport;
 
     //parses the data from the webserver into two variables
     let links = data["linksToRequest"];
@@ -45,6 +47,8 @@ const dataParser = function (data) {
     console.log(linkType1);
     console.log(linkType2);
     console.log(linkType3);
+
+    
 
 }
 
